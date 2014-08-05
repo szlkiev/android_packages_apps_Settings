@@ -1783,6 +1783,8 @@
             android:label="@string/Lockscreen_notifications_header" >
         </activity>
 
+        <activity android:name=".pac.ui.PacUiSettings" />
+
         <activity android:name=".pac.RamBar" />
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to ass display rotation config -->

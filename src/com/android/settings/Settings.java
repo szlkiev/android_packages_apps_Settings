@@ -108,6 +108,8 @@ import com.android.settings.net.MobileDataEnabler;
 import com.android.settings.nfc.AndroidBeam;
 import com.android.settings.nfc.PaymentSettings;
 import com.android.settings.pac.PacSettings;
+import com.android.settings.pac.ui.PacUiEnabler;
+import com.android.settings.pac.ui.PacUiSettings;
 import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintServiceSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
@@ -175,6 +177,8 @@ public class Settings extends PreferenceActivity
     private Header mCurrentHeader;
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
+
+    private int mCurrentUiPac = 0;
 
     // Show only these settings for restricted users
     private int[] SETTINGS_FOR_RESTRICTED = {
@@ -420,6 +424,11 @@ public class Settings extends PreferenceActivity
         if (mSearchItem != null) {
             mSearchItem.collapseActionView();
         }
+
+        if (newConfig.uiPac != mCurrentUiPac && HeaderAdapter.mPacUiEnabler != null) {
+            mCurrentUiPac = newConfig.uiPac;
+            HeaderAdapter.mPacUiEnabler.setSwitchState();
+        }
     }
 
     @Override
@@ -480,6 +489,7 @@ public class Settings extends PreferenceActivity
         HomeSettings.class.getName(),
         LockscreenInterface.class.getName(),
         PacSettings.class.getName(),
+        PacUiSettings.class.getName(),
         StatusBar.class.getName(),
         NotificationDrawer.class.getName(),
         ButtonSettings.class.getName(),
@@ -1003,6 +1013,7 @@ public class Settings extends PreferenceActivity
         private final ProfileEnabler mProfileEnabler;
         private final LocationEnabler mLocationEnabler;
         private final VoiceWakeupEnabler mVoiceWakeupEnabler;
+        public static PacUiEnabler mPacUiEnabler;
         private AuthenticatorHelper mAuthHelper;
         private DevicePolicyManager mDevicePolicyManager;
 
@@ -1018,14 +1029,16 @@ public class Settings extends PreferenceActivity
         private LayoutInflater mInflater;
 
         static int getHeaderType(Header header) {
-            if (header.fragment == null && header.intent == null) {
+            if (header.fragment == null && header.intent == null
+                    && header.id != R.id.pac_ui_settings) {
                 return HEADER_TYPE_CATEGORY;
             } else if (header.id == R.id.wifi_settings
                     || header.id == R.id.bluetooth_settings
                     || header.id == R.id.mobile_network_settings
                     || header.id == R.id.profiles_settings
                     || header.id == R.id.voice_wakeup_settings
-                    || header.id == R.id.location_settings) {
+                    || header.id == R.id.location_settings
+                    || header.id == R.id.pac_ui_settings) {
                 return HEADER_TYPE_SWITCH;
             } else if (header.id == R.id.security_settings) {
                 return HEADER_TYPE_BUTTON;
@@ -1075,6 +1088,7 @@ public class Settings extends PreferenceActivity
             mProfileEnabler = new ProfileEnabler(context, new Switch(context));
             mLocationEnabler = new LocationEnabler(context, new Switch(context));
             mVoiceWakeupEnabler = new VoiceWakeupEnabler(context, new Switch(context));
+            mPacUiEnabler = new PacUiEnabler(context, new Switch(context));
             mDevicePolicyManager = dpm;
         }
 
@@ -1154,6 +1168,8 @@ public class Settings extends PreferenceActivity
                         mLocationEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.voice_wakeup_settings) {
                         mVoiceWakeupEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.pac_ui_settings) {
+                        mPacUiEnabler.setSwitch(holder.switch_);
                     }
                     updateCommonHeaderView(header, holder);
                     break;
@@ -1231,6 +1247,7 @@ public class Settings extends PreferenceActivity
             mProfileEnabler.resume();
             mLocationEnabler.resume();
             mVoiceWakeupEnabler.resume();
+            mPacUiEnabler.resume();
         }
 
         public void pause() {
@@ -1240,6 +1257,7 @@ public class Settings extends PreferenceActivity
             mProfileEnabler.pause();
             mLocationEnabler.pause();
             mVoiceWakeupEnabler.pause();
+            mPacUiEnabler.pause();
         }
     }
 

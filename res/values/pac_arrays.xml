@@ -475,4 +475,25 @@
         <item>@string/volume_steps_5</item>
     </string-array>
 
+    <!-- PAC UI -->
+    <string-array name="pac_ui_entries">
+        <item>@string/pac_ui_normal</item>
+        <item>@string/pac_ui_on</item>
+    </string-array>
+
+    <string-array name="pac_ui_values" translatable="false">
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="pac_ui_night_mode_entries">
+        <item>@string/pac_ui_night_mode_yes</item>
+        <item>@string/pac_ui_night_mode_auto</item>
+    </string-array>
+
+    <string-array name="pac_ui_night_mode_values" translatable="false">
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+
 </resources>
