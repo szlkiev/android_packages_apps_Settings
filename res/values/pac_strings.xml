@@ -194,7 +194,7 @@
     <string name="pac_console_title">PAC Console</string>
 
     <!-- PAC Settings screens  -->
-    <string name="interface_settings_title">PAC Settings</string>
+    <string name="pac_settings_title">PAC aMaze</string>
 
     <!-- PAC Version -->
     <string name="pac_version">PAC version</string>

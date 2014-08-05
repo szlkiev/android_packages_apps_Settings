@@ -33,7 +33,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-public class PacUiSettings extends SettingsPreferenceFragment  implements
+public class PacSettings extends SettingsPreferenceFragment  implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "PACSettings";
 
@@ -41,7 +41,7 @@ public class PacUiSettings extends SettingsPreferenceFragment  implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.pac_ui_settings);
+        addPreferencesFromResource(R.xml.pac_settings);
 
     }
 

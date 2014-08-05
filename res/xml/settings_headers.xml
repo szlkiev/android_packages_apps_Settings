@@ -138,12 +138,13 @@
     <!-- Additional PAC-Rom Settings -->
     <header android:title="@string/header_category_rom_settings" />
 
-    <!-- Interface -->
+    <!-- PAC Settings -->
     <header
-        android:id="@+id/interface_settings"
-        android:icon="@drawable/ic_settings_interface"
-        android:fragment="com.android.settings.pac.PacUiSettings"
-        android:title="@string/interface_settings_title" />
+        settings:includeXmlForSearch="@xml/pac_settings"
+        android:id="@+id/pac_settings"
+        android:icon="@drawable/ic_settings_pac_amaze"
+        android:fragment="com.android.settings.pac.PacSettings"
+        android:title="@string/pac_settings_title" />
 
     <!-- DEVICE -->
     <header android:id="@+id/device_section"

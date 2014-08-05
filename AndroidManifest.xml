@@ -1765,7 +1765,7 @@
 
         <!-- PAC-Rom activities Start -->
         <activity android:name="Settings$PACSettingsActivity"
-                android:label="@string/interface_settings_title"
+                android:label="@string/pac_settings_title"
                 android:taskAffinity=""
                 android:excludeFromRecents="true">
             <intent-filter>
@@ -1773,9 +1773,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.pac.PacUiSettings" />
+                android:value="com.android.settings.pac.PacSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@+id/pac_ui_settings" />
+                android:resource="@id/pac_settings" />
         </activity>
 
         <activity
